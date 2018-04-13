@@ -10,20 +10,27 @@ library(emoGG)
 # ggplot(mtcars, aes(wt, mpg))+ geom_emoji(emoji="1f697")
 
 getwd()
-hof<-read_csv("hofstede.csv")
+hof<-read_csv("hofstede.csv") %>% 
+  filter(isregion==0)
+hof
+
 
 ###
 flags<-emoji_search("flag")
 
 # every country is Albania"
 hof %>% 
-  filter(isregion==0) %>% 
   ggplot(aes(x = pdi, y = idv)) +
   geom_emoji(emoji="1f1e6")
 
 # Every country is itself: 
 hof %>% 
-  filter(isregion==0) %>% 
   ggplot(aes(x = pdi, y = idv)) +
   geom_emoji(emoji=ji_1)
+
+
+# every country is its emoji's actual code: 
+hof %>% 
+  ggplot(aes(x = pdi, y = idv)) +
+  geom_text(aes(label = hof$ji))
 
