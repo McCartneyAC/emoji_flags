@@ -28,8 +28,9 @@ country_codes<-url %>%
   select(Country.or.Area.Name, ISO..ALPHA.2.Code) %>% 
   rename("name" = "Country.or.Area.Name" ,
          "code" = "ISO..ALPHA.2.Code" ) %>% 
+  mutate(code = tolower(code)) %>%
   na.omit()
-country_codes$code<-tolower(country_codes$code)
+
 country_codes
 
 
